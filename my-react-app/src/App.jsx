@@ -1,12 +1,11 @@
 import { useState } from 'react'
-import './App.css'
-
+import Navigation from './components/Navigation.jsx'
 function App() {
 
   return (
     <>
       <div>
-        <button className="btn btn-primary">A Bootstrap Button</button>
+        <Navigation />
         <p>Test</p>
       </div>
     </>
