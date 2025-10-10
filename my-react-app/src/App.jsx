@@ -1,12 +1,12 @@
-import { useState } from 'react'
+
 import Navigation from './components/Navigation.jsx'
+
 function App() {
 
   return (
     <>
       <div>
-        <Navigation />
-        <p>Test</p>
+        <Navigation current="home" onChange={(key) => console.log(key)} />
       </div>
     </>
   )
