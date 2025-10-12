@@ -1,0 +1,22 @@
+/* simple green/black pulse */
+.animation {
+  display: inline-block;          /* helps Safari repaint */
+  border: 4px solid transparent;      /* set width + style up front */
+  border-radius: 8px;
+}
+.animation:hover {
+  animation: 
+    pulse 1.2s ease-in-out infinite,
+    spin 1.2s linear infinite;
+}
+
+@keyframes pulse {
+  0%   { border-color: black; box-shadow: 0 0 12px rgba(0,230,118,0); }
+  50%  { border-color: #00e676; box-shadow: 0 0 12px rgba(0,230,118,.55); }
+  100% { border-color: #00e676; box-shadow: 0 0 12px rgba(0,230,118,0); }
+}
+
+@keyframes spin {
+  0% { border: rotate(0deg); }
+  100% { border: rotate(360deg); }
+}
