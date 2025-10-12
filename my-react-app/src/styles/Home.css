@@ -1,0 +1,59 @@
+.bigger {
+    font-family: 'Arial, sans-serif';
+    margin: 20px;
+
+
+    border-radius: 10px;
+    animation: fadeIn 2s ease-in-out infinite,
+        bigger 1.5s ease-in-out infinite;
+    animation-delay: .2s;
+    transform-origin: bottom;
+}
+
+@keyframes bigger {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes fadeIn {
+    0% {
+        opacity: 0.1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    75% {
+        opacity: .9;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.rainbow {
+  /* fallback solid color for older browsers */
+  color: #ff7f00;
+
+  /* gradient text */
+  background: linear-gradient(270deg,
+    #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff);
+  background-size: 500% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  /* animation */
+  animation: rainbowShift 10s ease infinite;
+}
+
+@keyframes rainbowShift {
+  0%   { background-position:   0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position:   0% 50%; }
+}

@@ -11,12 +11,13 @@ export default function Nav({ current, onClick }) {
   
     return (
       // Simple navigation component
-      <nav>
-        <ul className="navigation list-unstyled" > 
+      <nav className="container my-2 px-2 d-flex justify-content-center">
+        <ul className="list-unstyled d-flex flex-wrap justify-content-center btns-3 col-4"> 
           {/* Render navigation links */}
           {PAGES.map((page) => (
-            <li key={page} className={`btn btn-primary m-1 animation`} >
+            <li key={page} className="btn-cell "> 
               <a href={`#${page}`} 
+              className={`btn btn-md btn-primary m-1 animation`} 
                 style={{ color: current === page ? 'yellow' : 'white', textDecoration: 'none' }}
                 // Handle click events to change pages
                 onClick={(e) => {handleClick(page); e.preventDefault();}}
@@ -24,6 +25,7 @@ export default function Nav({ current, onClick }) {
                 aria-current={current === page ? 'page' : undefined}
                 >{page.charAt(0).toUpperCase() + page.slice(1)}</a>
             </li>
+            
           ))}
         </ul>
       </nav>
