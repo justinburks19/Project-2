@@ -33,7 +33,7 @@
 }
 /* Responsive button size */
 .btn {
-  font-size: clamp(0.8rem, 1.0vw, 2.0rem);
+  font-size: clamp(1.3ßrem, 1.0vw, 2.0rem);
 }
 /* 3 items per row */
 .btns-3 > .btn-cell { 
