@@ -11,13 +11,13 @@ export default function Nav({ current, onClick }) {
   
     return (
       // Simple navigation component
-      <nav className="container my-2 px-2 d-flex justify-content-center">
-        <ul className="list-unstyled d-flex flex-wrap justify-content-center btns-3 col-4"> 
+      <nav className="container d-flex justify-content-center">
+        <ul className="list-unstyled d-flex justify-content-center"> 
           {/* Render navigation links */}
           {PAGES.map((page) => (
             <li key={page} className="btn-cell "> 
               <a href={`#${page}`} 
-              className={`btn btn-md btn-primary m-1 animation`} 
+              className={`btn btn-lg btn-primary m-4 animation ${current === page ? 'active' : ''}`} 
                 style={{ color: current === page ? 'yellow' : 'white', textDecoration: 'none' }}
                 // Handle click events to change pages
                 onClick={(e) => {handleClick(page); e.preventDefault();}}
