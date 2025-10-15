@@ -1,9 +1,10 @@
 // components/Navigation.jsx
 import '../styles/Nav.css';
 
-export default function Nav({ current, onClick }) {
+
+function Nav({ current, onClick}) {
   // Define the pages for navigation
-  const PAGES = ['home', 'about', 'contact', 'calculator', 'movies', 'weather'];
+  const PAGES = ['home', 'about', 'contact', 'calculator', 'movies', 'weather']; 
   // Handle click events to change pages
   const handleClick = (page) => {
     onClick(page);
@@ -11,6 +12,7 @@ export default function Nav({ current, onClick }) {
   
     return (
       // Simple navigation component
+      <div className="nav-wrapper">
       <nav className="container d-flex justify-content-center">
         <ul className="list-unstyled d-flex justify-content-center"> 
           {/* Render navigation links */}
@@ -29,5 +31,8 @@ export default function Nav({ current, onClick }) {
           ))}
         </ul>
       </nav>
-    )
+    </div>
+    
+    );
 }
+export default Nav;
