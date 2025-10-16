@@ -2,11 +2,12 @@
 import Nav from './components/Navigation.jsx'
 import Home from './components/Home.jsx'
 import About from './components/About.jsx'
-import Weather from './components/Weather.jsx'
+import {Weather} from './components/Weather.jsx'
 import Movies from './components/Movies.jsx'
 import Calculator from './components/Calculator.jsx'
 import Contact from './components/Contact.jsx'
 import { useState} from 'react'
+import { ApiProvider} from './Context/ApiProvider.jsx'
 
  const PAGES = ({home: <Home />, about: <About />, calculator: <Calculator />, weather: <Weather />, movies: <Movies />, contact: <Contact />});
 export default function App() {
@@ -18,10 +19,12 @@ export default function App() {
 function MainContent({ page, setPage, PAGES }) {
   const currentPage = PAGES[page] || <h1>Page Not Found</h1>;
   return (
-    <div className="App container">
-      <Nav current={page} onClick={setPage} className="navigation" />
-      {currentPage}
-    </div>
+    <ApiProvider>
+      <div className="App container">
+        <Nav current={page} onClick={setPage} className="navigation" />
+        {currentPage}
+      </div>
+    </ApiProvider>
   );
 }
 

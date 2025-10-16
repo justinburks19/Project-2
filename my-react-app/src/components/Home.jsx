@@ -32,15 +32,15 @@ function Home() {
                 {Objectives.map(({id, obj, desc, complete}) => (
                     <div key={id} className="objectives-card col-5 m-2 p-2 text-bg-dark" 
                     style={{ border: '2px solid black', borderRadius: '10px' }}>
-                        <h2 className="text-center">
-                            <h1>
+                        <div className="text-center">
+                            <div>
                                 <span className={`${complete ? 'left-green' : 'left-red'}`}> {left}</span>
                                 {/* Circle with a blank space in the middle */}
                                 <span className={`${complete ? 'circle-green' : 'circle-red'}`}> .... </span>
                                 <span className={`${complete ? 'right-green' : 'right-red'}`}> {right}</span>
-                            </h1>
+                            </div>
                             <span className="rainbow">{obj}</span>
-                        </h2>
+                        </div>
                         <ul>
                             {desc.map((item, index) => (
                                 <li key={index}> {item} </li>
