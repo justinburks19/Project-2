@@ -1,11 +1,11 @@
 
 import Nav from './components/Navigation.jsx'
-import Home from './components/Home.jsx'
-import About from './components/About.jsx'
+import {Home} from './components/Home.jsx'
+import {About} from './components/About.jsx'
 import {Weather} from './components/Weather.jsx'
-import Movies from './components/Movies.jsx'
-import Calculator from './components/Calculator.jsx'
-import Contact from './components/Contact.jsx'
+import {Movies} from './components/Movies.jsx'
+import {Calculator} from './components/Calculator.jsx'
+import {Contact} from './components/Contact.jsx'
 import { useState} from 'react'
 import { ApiProvider} from './Context/ApiProvider.jsx'
 

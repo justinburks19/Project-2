@@ -1,5 +1,5 @@
 import React, { useEffect} from "react";
-import {useApi } from "../Context/apiContext.jsx";
+import {useApi } from "../Context/ApiContext.jsx";
 export function Weather() {
     const {info, isLoading, error, fetchData} = useApi();
 

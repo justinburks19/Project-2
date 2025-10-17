@@ -1,4 +1,5 @@
 import { createContext, useContext } from "react";
+import { ApiProvider } from "./ApiProvider";
 
 export const ApiContext = createContext(undefined);
 

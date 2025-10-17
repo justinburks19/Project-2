@@ -9,7 +9,7 @@ const animeList = [
     { title: "No Game No Life", year: 2014, rating: 8.5, img: "https://m.media-amazon.com/images/M/MV5BOTk5ZDZhNGUtMDM2OS00Y2RkLWEwMmQtODg4ZTZiMGY1ZjFjXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg", description: "Sora and Shiro, two brilliant gamers, are transported to a fantasy world where all conflicts are resolved through high-stakes games. They aim to conquer this new world and challenge its god." },
     { title: "Sword Art Online", year: 2012, rating: 8.0, img: "https://m.media-amazon.com/images/M/MV5BN2NhYzU2NDEtYzI1NS00MjgzLThjZGUtOTYxNGJkZjZmNDdjXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg", description: "Players of a virtual reality MMORPG find themselves trapped in the game, where dying in the game means dying in real life. Kirito, a skilled player, must navigate this dangerous world to survive." },
 ]
-export default function Movies() {
+export function Movies() {
     const [movies, setMovies] = useState([]);
     const [search, setSearch] = useState('family guy'); // Default search term
 
@@ -69,7 +69,7 @@ export default function Movies() {
             <h1> My Top 10 Animes</h1>
             <div className="anime-list container d-flex flex-wrap justify-content-around">
                 {animeList.map((anime, index) => (
-                    <div key={index} className="anime-card row d-flexcol-sm-1 col-md-6 col-lg-4 align-items-center justify-content-center">
+                    <div key={index} className="anime-card row d-flex col-sm-1 col-md-6 col-lg-4 align-items-center justify-content-center">
                         <h1 style={{ fontSize: 'clamp(1.5rem, 1vw, 2.5rem)', fontWeight: 'bold' }} className='d-flex justify-content-center'>{handleTitle(anime.title)}</h1>
                         <img src={anime.img} alt={`${anime.title} Poster`} style={{ width: 'clamp(200px, 20vw, 300px)', height: 'auto' }} />
                         <p className='d-flex justify-content-center'>Year: {anime.year}</p>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import '../styles/About.css'
 
-function About() {
+export function About() {
     // State variables for user info
     //lets use a usestate hook to manage the user profile information, instead of multiple useState hooks, we can use a single state object to hold all the user information
     const [profile, setProfile] = useState({
@@ -94,4 +94,3 @@ function EditProfile({ preventDefault, mySet }) {
     </div>
   );
 }
-      export default About;

@@ -6,7 +6,7 @@ import { useState } from "react";
     const negative = ['+/-']
     const history = []
 
-export default function Movies() {
+export function Calculator() {
     const [inputValue, setInputValue] = useState('');
     const [final, setFinal] = useState('');
     //Handle button clicks for calculator functionality
@@ -35,13 +35,13 @@ export default function Movies() {
     }
     return (
         <>
-            <Calculator final={final} inputValue={inputValue} handleButtonClick={handleButtonClick} setInputValue={setInputValue} />
+            <HandleCalc final={final} inputValue={inputValue} handleButtonClick={handleButtonClick} setInputValue={setInputValue} />
             <ViewHistory alert={alert} />
         </>
     )
 }
 
-    function Calculator({final, inputValue, handleButtonClick, setInputValue}) {
+    function HandleCalc({final, inputValue, handleButtonClick, setInputValue}) {
       return (<div>
             <h1>Do It All Calculator</h1>
             {
