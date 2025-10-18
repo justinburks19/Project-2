@@ -97,7 +97,7 @@ function Nav({ current, onClick}) {
       {/* thumbs control! */}
           <p className='d-flex justify-content-center pb-1'>{thumbControl(5)}</p>
 
-      {/* Render navigation links */}
+      {/* Render navigation links t*/}
       <nav className="container d-flex justify-content-center ">
         <ul className="list-unstyled d-flex flex-wrap justify-content-center">
           {PAGES.map((page) => (
