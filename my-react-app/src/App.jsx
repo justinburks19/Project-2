@@ -20,9 +20,10 @@ export default function App() {
 function MainContent({ page, setPage, PAGES }) {
   const currentPage = PAGES[page] || <h1>Page Not Found</h1>;
   return (
-    <div>
+    <div className='app-background bg-black'
+    style={{ minHeight: '100vh', minWidth: '100vw' }}>
       <div className="App container">
-        <Nav current={page} onClick={setPage} className="navigation" />
+        <Nav current={page} onClick={setPage} className="navigation"/>
         {currentPage}
       </div>
     </div>

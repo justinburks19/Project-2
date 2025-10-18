@@ -5,6 +5,7 @@ import '../styles/Navigation.css'
 import { useState} from 'react';
 import { motion } from "framer-motion";
 import { useSize } from '../helpers/size.jsx';
+import { Prism } from '../backgrounds/Prism.jsx';
 
 function Nav({ current, onClick}) {
   // Define the pages for navigation
@@ -61,6 +62,20 @@ function Nav({ current, onClick}) {
   }
     return (
       // Simple navigation component
+      <div className="prism-container bg-black justify-content-center">
+        <div style={{ width: '100%', height: 'clamp(2rem, 20rem, 40rem)', position: 'absolute' }}>
+  <Prism
+    animationType="rotate"
+    timeScale={0.5}
+    height={3.5}
+    baseWidth={5.5}
+    scale={1.6}
+    hueShift={0}
+    colorFrequency={1}
+    noise={0.01}
+    glow={1}
+  />
+</div>
       <div className="row d-flex flex-wrap overflow-hidden">
       <h1 ref={a.containerRef} className='col-10' style={{fontSize:'clamp(.5rem, 1rem, 2rem)'} }>Days to complete:
 
@@ -80,10 +95,8 @@ function Nav({ current, onClick}) {
           animate={{ x: [-10, b.maxX], y: 0 }}
           transition={{ duration: 1, repeat: Infinity, repeatType: "reverse" }}
         >
-          
-          <h1 className='col-7 d-flex justify-content-center mx-auto'> Welcome to 
-            <span style={{textDecoration: 'underline'}}>Project 2
-              </span> <span className='text-danger' onClick={() => alert("Hello Professor!")} style={{ cursor: 'pointer' }}>Professor</span>
+
+          <h1 className='col-7 d-flex flex-wrap justify-content-center mx-auto text-center'> Welcome to <span style={{textDecoration: 'underline'}}>-Project 2-</span> <span className='text-danger' onClick={() => alert("Hello Professor!")} style={{ cursor: 'pointer' }}>Professor</span>
           </h1>
 
           <div ref={b.itemRef} className='d-flex justify-content-center'>
@@ -97,7 +110,7 @@ function Nav({ current, onClick}) {
       {/* thumbs control! */}
           <p className='d-flex justify-content-center pb-1'>{thumbControl(5)}</p>
 
-      {/* Render navigation links t*/}
+      {/* Render navigation links */}
       <nav className="container d-flex justify-content-center ">
         <ul className="list-unstyled d-flex flex-wrap justify-content-center">
           {PAGES.map((page) => (
@@ -133,7 +146,7 @@ function Nav({ current, onClick}) {
       transition={{duration: 3, repeat: Infinity, repeatType: "reverse", delay: .5}}
       >______________________________________________________________________________________________</motion.p>
     </div>
-    
+    </div>
     );
 }
 export default Nav;
