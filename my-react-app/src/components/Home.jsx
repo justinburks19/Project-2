@@ -3,9 +3,7 @@ import '../styles/Home.css'
 import { motion } from "framer-motion";
 // Home component displaying user info and allowing edits
 export function Home() {
-    // Get the current date and year
-    const date = new Date();
-    const year = date.getFullYear();
+
     // Objectives for the project for a clear understanding of requirements
     const Objectives = [
        { id: 1, obj: "Component-Based Architecture", desc: ["Break down your UI into multiple, reusable functional components", "Demonstrate a clear parent-child component hierarchy" ], complete: true },
@@ -18,22 +16,21 @@ export function Home() {
        { id: 9, obj: "Deployment", desc: ["Deploy your React application using a service like Netlify.", "The live URL must be functional and accessible."], complete: false }
     ]
     return (
-        <div>
-            <main className="container-fluid row justify-content-around">
-            
-                <div className="objectives row justify-content-center">
+            <div className="row">   
+                <div className="objectives d-flex flex-wrap justify-content-center ">
                 {Objectives.map(({id, obj, desc, complete}) => (
                     <motion.div 
                     //My first time using motion, I wanted something creative!
                     //So far what i know is i need a intital value, an animate value, and a transition value
-                    initial={{ opacity: 0, scale: 0.1 }} //can also include x and y for position, scale, rotate, etc
-                    animate={{ opacity: 1, scale: 1 }} //Same as above
-                    transition={{ duration: 3, delay: id * .3}} //duration is how long it takes, delay is how long to wait before starting
+                    initial={{ opacity: 0, scale: 0.1, boxShadow: complete ? "0px 0px 0px 0px rgba(0, 240, 0, 0.5)" : "0px 0px 0px 0px rgba(240, 0, 0, 0.5)" }} //can also include x and y for position, scale, rotate, etc
+                    animate={{ opacity: 1, scale: 1, boxShadow: complete ? "0px 0px 10px 10px rgba(0, 240, 0, 0.5)" : "0px 0px 10px 10px rgba(240, 0, 0, 0.5)" }} //Same as above
+                    transition={{ duration: 1, delay: id * .3, boxShadow: { repeat: Infinity, duration: .5, repeatType: "reverse", delay:.7 } }} //duration is how long it takes, delay is how long to wait before starting
                     //For above, lets say id of 1 
                     //delay = 1 * .3 = .3 seconds, .6, .9, 1.2, etc
                     //So each objective will appear one after another
                     
-                    key={id} className="objectives-card col-5 m-2 p-2 text-bg-dark" 
+                    key={id} 
+                    className="objectives-card col-sm-12 col-md-4 col-lg-3 text-bg-dark m-4 p-3 " //boxshadow to make it pop
                     style={{ border: '2px solid black', borderRadius: '10px' }}>
                         <div className="text-center">
                             <div>
@@ -54,7 +51,6 @@ export function Home() {
                     </motion.div>
                 ))}
                 </div>
-            </main>
-        </div>
+            </div>
     );
 }

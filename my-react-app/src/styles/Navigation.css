@@ -1,0 +1,14 @@
+.onHover:hover {
+    animation: grow 0.4s ease-in-out reverse infinite;
+}
+@keyframes grow {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

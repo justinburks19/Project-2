@@ -1,0 +1,30 @@
+Make sure you’re on the branch you want to branch off from (usually main):
+
+git checkout main
+
+Update it to the latest version:
+
+git pull origin main
+
+
+Create and switch to a new branch:
+
+git checkout -b New-Branch-Name
+
+
+(replace New-Branch-Name with something descriptive, like feature-navbar or fix-weather-component)
+
+Push your new branch to GitHub (so it exists remotely too):
+
+git push -u origin New-Branch-Name
+
+
+The -u sets up tracking so future git push and git pull commands automatically know where to go.
+________________________________
+If you’re on main and want to start a branch for “dark mode UI”:
+
+git checkout main
+git pull origin main
+git checkout -b dark-mode-ui
+git push -u origin dark-mode-ui
+________________________________
