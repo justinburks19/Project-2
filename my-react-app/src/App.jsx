@@ -9,6 +9,7 @@ import {Contact} from './components/Contact.jsx'
 import { useState} from 'react'
 import { ApiProvider} from './Context/ApiProvider.jsx'
 import { LiquidEther } from './backgrounds/LiquidEther.jsx';
+import { LightRays } from './backgrounds/LightRays.jsx';
 
  const PAGES = {home: <Home />, about: <About />, calculator: <Calculator />, weather: <Weather />, movies: <Movies />};
 export default function App() {
@@ -54,6 +55,31 @@ function MainContent({ page, setPage, PAGES }) {
         />
         </div>
       ) : null}
+
+      {page === 'movies' ? (
+        <div style={{
+    position: 'fixed',
+    inset: 0,
+    zIndex: 1,   // max
+    pointerEvents: 'auto', // won't block clicks
+    overflow: 'hidden',
+    background: 'transparent',
+    }}>
+  <LightRays
+    raysOrigin="top-center"
+    raysColor="#00ffff"
+    raysSpeed={3}
+    lightSpread={1}
+    rayLength={1}
+    followMouse={true}
+    mouseInfluence={0.1}
+    noiseAmount={0.1}
+    distortion={0.05}
+    className="custom-rays"
+  />
+</div>
+      ) : null}
+    
 
       <div className='app-background bg-black over' style={{ minHeight: '100vh' }}>
         <div className='container'>
