@@ -1,5 +1,6 @@
 import React, { useEffect} from "react";
 import {useApi } from "../Context/ApiContext.jsx";
+import { clamp } from "three/src/math/MathUtils.js";
 export function Weather() {
     const {info, isLoading, error, fetchData} = useApi();
 
@@ -13,17 +14,37 @@ export function Weather() {
         // Display weather information
         //via rows due to mapping array in object info not possible
         const row = info.hourly;
+        //get the first 24 hours of data
+        const rows = {
+            time: row.time.slice(0, 24),
+            temperature_2m: row.temperature_2m.slice(0, 24),
+        };
         const currentTime = new Date().toISOString().slice(5, 13); // Get current time in 'YYYY-MM-DDTHH' format
     return (
-        <div>
-            <p>{currentTime}</p>
-            <h1>Weather Data</h1>
-            {row.temperature_2m.map((temp, index) => (
-                <div key={index}>
-                    <p>Temperature: {temp}°C</p>
-                    <p>Time: {row.time[index].slice(11, 16)}</p>
-                </div>
-            ))}
-        </div>
+       <Enter currentTime={currentTime} rows={rows} />
     );
 };
+
+    function Enter({currentTime, rows}) {
+      return (<div className="row m-auto d-flex justify-content-center">
+            <p className="d-flex flex-wrap justify-content-center" style={{
+    fontSize: 'clamp(1rem, 2vw, 2rem)'
+  }}>{currentTime}</p>
+            <h1 className="d-flex flex-wrap justify-content-center" style={{
+    fontSize: 'clamp(1rem, 3vw, 4rem)'
+  }}>Weather Data Via Api</h1>
+            {rows.temperature_2m.map((temp, index) => <div key={index} style={{
+    marginBottom: '10px',
+    borderBottom: '1px solid gray',
+    border: '1px solid white'
+  }} className="col-4 m-1">
+                    <p style={{
+      fontSize: 'clamp(1rem, 2vw, 2rem)'
+    }}>Temperature: {temp}°C</p>
+                    <p style={{
+      fontSize: 'clamp(1rem, 2vw, 2rem)'
+    }}> Time: {rows.time[index].slice(11, 16)}</p>
+                </div>)}
+        </div>);
+    }
+  
