@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { useSize } from '../helpers/size.jsx';
 import { Prism } from '../backgrounds/Prism.jsx';
 
-function Nav({ current, onClick}) {
+export function Nav({ current, onClick}) {
   // Define the pages for navigation
   const PAGES = ['home', 'about', 'calculator', 'movies', 'weather']; 
   const [button, showButton] = useState(true);
@@ -62,99 +62,134 @@ function Nav({ current, onClick}) {
   }
     return (
       // Simple navigation component
-      <div className="prism-container bg-black justify-content-center">
-        <div style={{ width: '100%', height: 'clamp(2rem, 20rem, 40rem)', position: 'absolute' }}>
-  <Prism
-    animationType="rotate"
-    timeScale={0.5}
-    height={3.5}
-    baseWidth={5.5}
-    scale={1.6}
-    hueShift={0}
-    colorFrequency={1}
-    noise={0.01}
-    glow={1}
-  />
-</div>
-      <div className="row d-flex flex-wrap overflow-hidden">
-      <h1 ref={a.containerRef} className='col-10' style={{fontSize:'clamp(.5rem, 1rem, 2rem)'} }>Days to complete:
+      <Enter daysToComplete={daysToComplete} button={button} alert={alert} handleButton={handleButton} thumbControl={thumbControl} current={current} handleClick={handleClick} />
+    );
 
-        <motion.span 
-        ref ={a.itemRef} 
-        style={{fontSize:'clamp(1rem, 1.5rem, 2rem)', 
-          fontFamily: 'fantasy', display: 'inline-block', 
-          whiteSpace: 'nowrap'}}
-          initial={{ x: 0}}
-          animate={{ x: [0, a.maxX] }}
-          transition={{duration: 3, ease: "easeOut", repeat: Infinity, repeatType: "reverse"}} >
+    function Enter({daysToComplete, button, alert, handleButton, thumbControl, current, handleClick}) {
+      return (<div className="prism-container bg-black justify-content-center">
+        <div style={{
+    width: '100%',
+    height: 'clamp(2rem, 20rem, 40rem)',
+    position: 'absolute'
+  }}>
+  <Prism animationType="rotate" timeScale={0.5} height={3.5} baseWidth={5.5} scale={1.6} hueShift={0} colorFrequency={1} noise={0.01} glow={1} />
+  </div>
+      <div className="row d-flex flex-wrap overflow-hidden">
+      <h1 ref={a.containerRef} className='col-10' style={{
+      fontSize: 'clamp(.5rem, 1rem, 2rem)'
+    }}>Days to complete:
+
+        <motion.span ref={a.itemRef} style={{
+        fontSize: 'clamp(1rem, 1.5rem, 2rem)',
+        fontFamily: 'fantasy',
+        display: 'inline-block',
+        whiteSpace: 'nowrap'
+      }} initial={{
+        x: 0
+      }} animate={{
+        x: [0, a.maxX]
+      }} transition={{
+        duration: 3,
+        ease: "easeOut",
+        repeat: Infinity,
+        repeatType: "reverse"
+      }}>
             {`${daysToComplete()}`}
           </motion.span>
 
       </h1>
-      {/* Welcome message with animation */}
-      {button && (
-        <motion.div
-          style={{ zIndex: 100000 }}
-          ref={b.containerRef}
-          initial={{ x: 0, y: 10 }}
-          animate={{ x: [-10, b.maxX], y: 0 }}
-          transition={{ duration: 1, repeat: Infinity, repeatType: "reverse" }}
-        >
+      {
+      /* Welcome message with animation */
+    }
+      {button && <motion.div style={{
+      zIndex: 100000
+    }} ref={b.containerRef} initial={{
+      x: 0,
+      y: 10
+    }} animate={{
+      x: [-10, b.maxX],
+      y: 0
+    }} transition={{
+      duration: 1,
+      repeat: Infinity,
+      repeatType: "reverse"
+    }}>
 
-          <h1 className='col-7 d-flex flex-wrap justify-content-center mx-auto text-center '> Welcome to <span style={{textDecoration: 'underline'}}>-Project 2-</span> <span className='text-danger' onClick={() => alert("Hello Professor!")} style={{ cursor: 'pointer' }}>Professor</span>
+          <h1 className='col-7 d-flex flex-wrap justify-content-center mx-auto text-center '> Welcome to <span style={{
+          textDecoration: 'underline'
+        }}>-Project 2-</span> <span className='text-danger' onClick={() => alert("Hello Professor!")} style={{
+          cursor: 'pointer'
+        }}>Professor</span>
           </h1>
 
           <div ref={b.itemRef} className='d-flex justify-content-center'>
 
-            {/* lets have a button to acknowledge the professor and to close above!*/}
+            {
+          /* lets have a button to acknowledge the professor and to close above!*/
+        }
             <button className='btn btn-danger' onClick={handleButton}>Acknowledge</button>
           </div>
-        </motion.div>
-      )}
+        </motion.div>}
 
-      {/* thumbs control! */}
+      {
+      /* thumbs control! */
+    }
           <p className='d-flex justify-content-center pb-1'>{thumbControl(5)}</p>
 
-      {/* Render navigation links */}
+      {
+      /* Render navigation links */
+    }
       <nav className="container d-flex justify-content-center ">
         <ul className="list-unstyled d-flex flex-wrap justify-content-center">
-          {PAGES.map((page) => (
-            /* Motion list item for animation */
-            <div className={`d-flex justify-content-center ${page === 'home' || page === 'about' ? "col-sm-2 col-md-6 col-lg-6" : "col-sm-2 col-md-4 col-lg-4"}`}
-            key={page}>
-            <motion.li 
-
-              style={{border: '2px solid black', borderRadius: '10px', zIndex: 100000}}
-              ref={c.containerRef} key={page} 
-              className="p-0 m-2 onHover"
-              initial={{ rotate: 0 }}
-              animate={{ rotate: [1, 1, -10, 1] }}
-              transition={{ duration: 1, repeat: Infinity, repeatType: "loop", delay: page.length * 0.8 }}
-              >
-              {/* Navigation link with active state styling */}
-              <a ref={c.itemRef} href={`#${page}` }
-                className={`btn btn-lg btn-primary m-0 ${current === page ? 'active' : ''}`}
-                style={{ color: current === page ? 'yellow' : 'white', textDecoration: 'none', cursor: `help` }}
-                // Handle click events to change pages
-                onClick={(e) => {handleClick(page); e.preventDefault();}}
-                // Highlight the current page for screen readers
-                aria-current={current === page ? 'page' : undefined}
-                >{page.charAt(0).toUpperCase() + page.slice(1)}</a>
+          {PAGES.map(page =>
+        /* Motion list item for animation */
+        <div className={`d-flex justify-content-center ${page === 'home' || page === 'about' ? "col-sm-2 col-md-6 col-lg-6" : "col-sm-2 col-md-4 col-lg-4"}`} key={page}>
+            <motion.li style={{
+            border: '2px solid black',
+            borderRadius: '10px',
+            zIndex: 100000
+          }} ref={c.containerRef} key={page} className="p-0 m-2 onHover" initial={{
+            rotate: 0
+          }} animate={{
+            rotate: [1, 1, -10, 1]
+          }} transition={{
+            duration: 1,
+            repeat: Infinity,
+            repeatType: "loop",
+            delay: page.length * 0.8
+          }}>
+              {
+              /* Navigation link with active state styling */
+            }
+              <a ref={c.itemRef} href={`#${page}`} className={`btn btn-lg btn-primary m-0 ${current === page ? 'active' : ''}`} style={{
+              color: current === page ? 'yellow' : 'white',
+              textDecoration: 'none',
+              cursor: `help`
+            }} // Handle click events to change pages
+            onClick={e => {
+              handleClick(page);
+              e.preventDefault();
+            }} // Highlight the current page for screen readers
+            aria-current={current === page ? 'page' : undefined}>{page.charAt(0).toUpperCase() + page.slice(1)}</a>
             </motion.li>
-            </div>
-          ))}
+            </div>)}
         </ul>
       </nav>
-      <motion.p 
-      ref={d.containerRef}
-      className='d-flex justify-content-center flex-wrap'
-      style={{display: 'inline-block', transformOrigin: 'center', overflow: 'hidden'}}
-      initial={{scale:1}}
-      animate={{scale:d.maxX}}
-      transition={{duration: 3, repeat: Infinity, repeatType: "reverse", delay: .5}}
-      >______________________________________________________________________________________________</motion.p>
+      <motion.p ref={d.containerRef} className='d-flex justify-content-center flex-wrap' style={{
+      display: 'inline-block',
+      transformOrigin: 'center',
+      overflow: 'hidden'
+    }} initial={{
+      scale: 1
+    }} animate={{
+      scale: d.maxX
+    }} transition={{
+      duration: 3,
+      repeat: Infinity,
+      repeatType: "reverse",
+      delay: .5
+    }}>______________________________________________________________________________________________</motion.p>
     </div>
-    </div>
-    );
-}
-export default Nav;
+    </div>);
+    }
+  }

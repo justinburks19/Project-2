@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
-
+//was uplaoded from https://reactbits.dev/
 export function LiquidEther({
   mouseForce = 20,
   cursorSize = 100,

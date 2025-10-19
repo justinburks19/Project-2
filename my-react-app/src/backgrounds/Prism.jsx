@@ -1,7 +1,7 @@
 //using via tailwing for code!
 import { useEffect, useRef } from 'react';
 import { Renderer, Triangle, Program, Mesh } from 'ogl';
-
+//was uplaoded from https://reactbits.dev/
 export const Prism = ({
   height = 3.5,
   baseWidth = 5.5,

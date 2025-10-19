@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import { Renderer, Program, Triangle, Mesh } from 'ogl';
-
+//was uplaoded from https://reactbits.dev/
 const DEFAULT_COLOR = '#ffffff';
 
 const hexToRgb = hex => {

@@ -65,47 +65,70 @@ export function Movies() {
     
 
     return (
-        <div>
-            <h1 style={{color: 'white'}}> My Top 10 Animes</h1>
-            <div className="anime-list container d-flex flex-wrap justify-content-around">
-                {animeList.map((anime, index) => (
-                    <div key={index} 
-                    className="anime-card row d-flex col-sm-1 col-md-6 col-lg-4 align-items-center justify-content-center border-3 p-0 g-1">
-                        <h1 style={{ fontSize: 'clamp(1.5rem, 1vw, 2.5rem)', fontWeight: 'bold', color: 'white' }} className='d-flex justify-content-center' >{handleTitle(anime.title)}</h1>
-                        <img src={anime.img} alt={`${anime.title} Poster`} style={{ width: 'clamp(200px, 20vw, 300px)', height: 'auto', }} />
-                        <p className='d-flex justify-content-center text' style={{color: 'white'}}>Year: {anime.year}</p>
-                        <p className='d-flex justify-content-center text' style={{color: 'white'}}>Rating: {`${'⭐'.repeat(anime.rating / 2)}`}</p>
-                        <p className='d-flex justify-content-center text' style={{color: 'white'}}>Desciption: {anime.description}</p>
-                    </div>
-                ))}
-            </div>
-
-            <div className='movie-search container row m-auto'>
-            <h1 className=' m-auto d-flex justify-content-center' style={{color: 'white'}}>Movies List</h1>
-                <input
-                    type="text"
-                    value={search}
-                    onChange={handleInputChange}
-                    placeholder="Search movies..."
-                    className="form-control p-1 m-2 "
-                    style={{ zIndex: 1000000 }}
-                />
-                <button className='btn btn-primary mb-2 col-4 m-auto' onClick={handleSearch} style={{ zIndex: 1000000 }}>Search</button>
-                <div className='movie-container d-flex flex-wrap justify-content-around'>
-                {movies.map((movie) => (
-                    <div className='movie-card row d-flex col-sm-1 col-md-6 col-lg-4 align-items-center justify-content-center border-2'>
-                            <h1 style={{color: 'white', fontSize: 'clamp(1.5rem, 1vw, 2.5rem)', fontWeight: 'bold' }} className='d-flex justify-content-center'>{handleTitle(movie.Title)}</h1>
-                            <img src={movie.Poster !== 'N/A' ? movie.Poster : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdwSWqBlDZsYbr2OX-RiRqX6N19D3-TLAjgw&s'} 
-                            alt={`${movie.Title} Poster`}
-                            style={{ width: 'clamp(200px, 20vw, 300px)', height: 'auto', color: 'white' }} />
-                            <p className='d-flex justify-content-center' style={{color: 'white'}}>Year: {movie.Year}</p>
-                            <p className='d-flex justify-content-center' style={{color: 'white'}}>Rating: {`${getRandomRating()}`} </p>
-                        </div>
-                ))}
-                </div>
-            </div>
-        </div>
-
+        <Enter anime={animeList} handleTitle={handleTitle} search={search} handleInputChange={handleInputChange} handleSearch={handleSearch} movies={movies} getRandomRating={getRandomRating} />
     );
 }
 
+
+    function Enter({anime, handleTitle, search, handleInputChange, handleSearch, movies, getRandomRating}) {
+      return (<div>
+            <h1 style={{
+    color: 'white'
+  }}> My Top 10 Animes</h1>
+            <div className="anime-list container d-flex flex-wrap justify-content-around">
+                {anime.map((item, index) => <div key={index} className="anime-card row d-flex col-sm-1 col-md-6 col-lg-4 align-items-center justify-content-center border-3 p-0 g-1">
+                        <h1 style={{
+        fontSize: 'clamp(1.5rem, 1vw, 2.5rem)',
+        fontWeight: 'bold',
+        color: 'white'
+      }} className='d-flex justify-content-center'>{handleTitle(item.title)}</h1>
+                        <img src={item.img} alt={`${item.title} Poster`} style={{
+        width: 'clamp(200px, 20vw, 300px)',
+        height: 'auto'
+      }} />
+                        <p className='d-flex justify-content-center text' style={{
+        color: 'white'
+      }}>Year: {item.year}</p>
+                        <p className='d-flex justify-content-center text' style={{
+        color: 'white'
+      }}>Rating: {`${'⭐'.repeat(item.rating / 2)}`}</p>
+                        <p className='d-flex justify-content-center text' style={{
+        color: 'white'
+      }}>Desciption: {item.description}</p>
+                    </div>)}
+            </div>
+
+            <div className='movie-search container row m-auto'>
+            <h1 className=' m-auto d-flex justify-content-center' style={{
+      color: 'white'
+    }}>Movies List</h1>
+                <input type="text" value={search} onChange={handleInputChange} placeholder="Search movies..." className="form-control p-1 m-2 " style={{
+      zIndex: 1000000
+    }} />
+                <button className='btn btn-primary mb-2 col-4 m-auto' onClick={handleSearch} style={{
+      zIndex: 1000000
+    }}>Search</button>
+                <div className='movie-container d-flex flex-wrap justify-content-around'>
+                {movies.map((movie, idx) => <div key={movie.imdbID || idx} className='movie-card row d-flex col-sm-1 col-md-6 col-lg-4 align-items-center justify-content-center border-2'>
+                            <h1 style={{
+          color: 'white',
+          fontSize: 'clamp(1.5rem, 1vw, 2.5rem)',
+          fontWeight: 'bold'
+        }} className='d-flex justify-content-center'>{handleTitle(movie.Title)}</h1>
+                            <img src={movie.Poster !== 'N/A' ? movie.Poster : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdwSWqBlDZsYbr2OX-RiRqX6N19D3-TLAjgw&s'} alt={`${movie.Title} Poster`} style={{
+          width: 'clamp(200px, 20vw, 300px)',
+          height: 'auto',
+          color: 'white'
+        }} />
+                            <p className='d-flex justify-content-center' style={{
+          color: 'white'
+        }}>Year: {movie.Year}</p>
+                            <p className='d-flex justify-content-center' style={{
+          color: 'white'
+        }}>Rating: {`${getRandomRating()}`} </p>
+                        </div>)}
+                </div>
+            </div>
+        </div>);
+    }
+  

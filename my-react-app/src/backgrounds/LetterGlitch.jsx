@@ -1,4 +1,5 @@
 import { useRef, useEffect } from 'react';
+//was uplaoded from https://reactbits.dev/
 
 export const LetterGlitch = ({
   glitchColors = ['#2b4539', '#61dca3', '#61b3dc'],

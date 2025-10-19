@@ -1,5 +1,5 @@
 
-import Nav from './components/Navigation.jsx'
+import {Nav} from './components/Navigation.jsx'
 import {Home} from './components/Home.jsx'
 import {About} from './components/About.jsx'
 import {Weather} from './components/Weather.jsx'

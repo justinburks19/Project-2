@@ -31,55 +31,96 @@ export function Home() {
     }
 
     return (
-        <div className="container-fluid p-0 m-0">
+        <HomeForm completed={completed} toggleComplete={toggleComplete} />
+    );
+  }
+  
+  
+    export function HomeForm({ completed, toggleComplete }) {
+      return (<div className="container-fluid p-0 m-0">
             <div className="row">   
                 <div className="objectives d-flex flex-wrap justify-content-center electric-border">
-                {completed.map(({id, obj, desc, complete}) => (
-                    <motion.div 
-                    //re-mount when complete changes! get the orignal key plus complete status
-                        key={`${id}-${complete}`}
-                        //My first time using motion, I wanted something creative!
-                        //So far what i know is i need a intital value, an animate value, and a transition value
-                        initial={{opacity: 0, scale: 0.1, boxShadow: complete ? "0px 0px 0px 0px rgba(0, 240, 0, 0.5)" : "0px 0px 0px 0px rgba(240, 0, 0, 0.5)" }} //can also include x and y for position, scale, rotate, etc
-                        whileHover={{ scale: 1.24, zIndex: 1, boxShadow: {repeat: Infinity, duration: .5, repeatType: "reverse", delay:.7} }} //when hovered, scale up a bit
-                        animate={{ opacity: 1, scale: 1, boxShadow: complete ? "0px 0px 10px 10px rgba(0, 240, 0, 0.5)" : "0px 0px 10px 10px rgba(240, 0, 0, 0.5)" }} //Same as above
-                        transition={{ duration: .7, delay: id * .3, boxShadow: { repeat: Infinity, duration: .5, repeatType: "reverse", delay:.7} }} //duration is how long it takes, delay is how long to wait before starting
-                        //For above, lets say id of 1 
-                        //delay = 1 * .3 = .3 seconds, .6, .9, 1.2, etc
-                        //So each objective will appear one after another
-
-                        className="objectives-card col-sm-12 col-md-4 col-lg-3 text-bg-dark m-4 p-0 electric-border position-relative " //boxshadow to make it pop
-                        style={{ border: '2px solid black', borderRadius: '10px', zIndex:-1 }}>
-                        <ElectricBorder thickness={.1} color={complete ? '#00F000' : '#F00000'} speed={1.0} chaos={3} className="w-100 h-100 onHover" 
-                        >
+                {completed.map(({
+        id,
+        obj,
+        desc,
+        complete
+      }) => <motion.div //re-mount when complete changes! get the orignal key plus complete status
+      key={`${id}-${complete}`} //My first time using motion, I wanted something creative!
+      //So far what i know is i need a intital value, an animate value, and a transition value
+      initial={{
+        opacity: 0,
+        scale: 0.1,
+        boxShadow: complete ? "0px 0px 0px 0px rgba(0, 240, 0, 0.5)" : "0px 0px 0px 0px rgba(240, 0, 0, 0.5)"
+      }} //can also include x and y for position, scale, rotate, etc
+      whileHover={{
+        scale: 1.24,
+        zIndex: 1,
+        boxShadow: {
+          repeat: Infinity,
+          duration: .5,
+          repeatType: "reverse",
+          delay: .7
+        }
+      }} //when hovered, scale up a bit
+      animate={{
+        opacity: 1,
+        scale: 1,
+        boxShadow: complete ? "0px 0px 10px 10px rgba(0, 240, 0, 0.5)" : "0px 0px 10px 10px rgba(240, 0, 0, 0.5)"
+      }} //Same as above
+      transition={{
+        duration: .7,
+        delay: id * .3,
+        boxShadow: {
+          repeat: Infinity,
+          duration: .5,
+          repeatType: "reverse",
+          delay: .7
+        }
+      }} //duration is how long it takes, delay is how long to wait before starting
+      //For above, lets say id of 1 
+      //delay = 1 * .3 = .3 seconds, .6, .9, 1.2, etc
+      //So each objective will appear one after another
+      className="objectives-card col-sm-12 col-md-4 col-lg-3 text-bg-dark m-4 p-0 electric-border position-relative " //boxshadow to make it pop
+      style={{
+        border: '2px solid black',
+        borderRadius: '10px',
+        zIndex: -1
+      }}>
+                        <ElectricBorder thickness={.1} color={complete ? '#00F000' : '#F00000'} speed={1.0} chaos={3} className="w-100 h-100 onHover">
                             <div className="text-center p-3">
                                 <div>
-                                    {/* Top border with spinner indicating completion status */}
-                                    <span className={`spinner-grow ${complete ? 'text-success' : 'text-danger'}`} 
-                                    style={{width: 'clamp(2rem, 3rem, 4rem)', height: 'clamp(2rem, 3rem, 4rem)'}}></span>
+                                    {
+                /* Top border with spinner indicating completion status */
+              }
+                                    <span className={`spinner-grow ${complete ? 'text-success' : 'text-danger'}`} style={{
+                width: 'clamp(2rem, 3rem, 4rem)',
+                height: 'clamp(2rem, 3rem, 4rem)'
+              }}></span>
                                 </div>
-                                {/* Display objective with decorative parentheses */}
-                                <span className="rainbow" style={{fontSize: 'clamp(1.5rem, 2rem, 3rem)'}}>{obj}</span>
+                                {
+              /* Display objective with decorative parentheses */
+            }
+                                <span className="rainbow" style={{
+              fontSize: 'clamp(1.5rem, 2rem, 3rem)'
+            }}>{obj}</span>
                             </div>
                             <ul>
-                                {/* List each description item */}
-                                {desc.map((item, index) => (
-                                    <li
-                                        key={index} style={{fontSize: 'clamp(1rem, 1.2rem, 2rem)'}}> {complete ? '🧹': '☢️'}{item} </li>
-                                ))}
+                                {
+              /* List each description item */
+            }
+                                {desc.map((item, index) => <li key={index} style={{
+              fontSize: 'clamp(1rem, 1.2rem, 2rem)'
+            }}> {complete ? '🧹' : '☢️'}{item} </li>)}
                             </ul>
                                 <div className='d-flex justify-content-center pb-3'>
-                                <button
-                                className={`btn ${complete ? 'btn-success' : 'btn-danger'}`}
-                                onClick={() => toggleComplete(id)}
-                                >{`${complete ? 'Finished!' : 'Complete'} `}
+                                <button className={`btn ${complete ? 'btn-success' : 'btn-danger'}`} onClick={() => toggleComplete(id)}>{`${complete ? 'Finished!' : 'Complete'} `}
                                 </button>
                                 </div>
                         </ElectricBorder>
-                    </motion.div>
-                ))}
+                    </motion.div>)}
                 </div>
             </div>
-        </div>
-    );
-}
+        </div>);
+    }
+  

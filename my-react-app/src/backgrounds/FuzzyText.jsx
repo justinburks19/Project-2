@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-
+//was uplaoded from https://reactbits.dev/
 export const FuzzyText = ({
   children,
   fontSize = 'clamp(2rem, 10vw, 10rem)',
