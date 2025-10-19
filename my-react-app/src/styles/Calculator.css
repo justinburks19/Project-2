@@ -1,4 +1,27 @@
-.pumpkin:hover, .ghost:hover {
-  transform: scale(1.5);
-  transition: transform 0.2s;
+.flip:hover {
+    animation: rotate 1s ease-in;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.pumpkin { 
+    filter: invert(2%) sepia(30%) saturate(30%) hue-rotate(358deg)
+          brightness(50%) contrast(200%);
+    animation: great 3s infinite;
+ } /* pick any color */
+
+@keyframes great {
+    0% { filter: invert(2%) sepia(30%) saturate(30%) hue-rotate(358deg)
+          brightness(50%) contrast(200%);}
+    50% { filter: invert(5%) sepia(30%) saturate(50%) hue-rotate(358deg)
+          brightness(80%) contrast(200%);}
+    100% { filter: invert(2%) sepia(30%) saturate(80%) hue-rotate(358deg)
+          brightness(50%) contrast(200%);} 
 }

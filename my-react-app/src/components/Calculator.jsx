@@ -1,17 +1,19 @@
 import { useState } from "react";
 import "../styles/Calculator.css";
+import { clamp } from "three/src/math/MathUtils";
+import {motion} from "framer-motion";
+import { useSize } from "../helpers/size.jsx";
+import pumpkin from '../assets/pumpkin-2341.svg';
 //Set up what is displayed on the calculator
 const mathOperations = ["+", "-", "*", "/",  ".", "C", "="];
 const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 const backSpace = ["<--- BackSpace"];
 const negative = ["Flip"];
 const history = [];
-
 export function Calculator() {
   const [inputValue, setInputValue] = useState("");
   const [final, setFinal] = useState("");
   //Handle button clicks for calculator functionality
-
   function handleButtonClick(value) {
     // Clear input if 'C' is pressed, evaluate expression if '=' is pressed, otherwise append value
     // Handle for mutple operations for last operation
@@ -53,9 +55,26 @@ export function Calculator() {
 }
 
 function HandleCalc({ final, inputValue, handleButtonClick, setInputValue }) {
+  const b = useSize();
   return (
-    <div className="calculator-container border-4 m-auto p-2 align-content-center position-relative">
-      <h1 className="d-flex justify-content-center">Do It All Calculator</h1>
+    <div
+      ref={b.containerRef}
+      className="calculator-container border-4 p-2 border-warning row d-flex">
+      <motion.h1
+      ref={b.itemRef}
+        style={{whiteSpace: 'nowrap',
+          display: 'inline-block'
+        }}
+        initial={{filter: "drop-shadow(0 0 0px #ff8800)", x:0, rotate:0 }}
+        animate={{filter: ["drop-shadow(0 0 clamp(1px, 60px, 80px) #ff8800)", "drop-shadow(0 0 clamp(1px, 30px, 50px) #66ff00b7)"] , 
+          x: [0,b.maxX], rotate: [0,360]}}
+        transition={{
+          duration: 3, repeat: Infinity, repeatType: "mirror", ease:"easeOut"}}
+        className="d-flex justify-content-center col-1 text-warning m-0 p-2">
+
+          <img src={pumpkin} alt="H" width={100} height={100} className="pumpkin" />
+
+        </motion.h1>
       {/* Display what is pressed and then output final result */}
       <label type="digit" 
       className="border-4 m-0 d-flex justify-content-center"
@@ -70,14 +89,14 @@ function HandleCalc({ final, inputValue, handleButtonClick, setInputValue }) {
         {inputValue}
       </label>
 
-      <div className="container">
+      <div className="container text">
         {/* Render my negative/positive button */}
         <div 
         className="row col-6 d-flex flex-wrap justify-content-center">
         {negative.map((item) => (
           <button
             key={item}
-            className="btn-group border-4 col-sm-8 col-md-8 col-lg-8 start-50 justify-content-center p-2 m-1 pumpkin"
+            className="btn-group border-4 col-sm-8 col-md-8 col-lg-8 start-50 justify-content-center p-2 m-1 text-bg-success flip"
             onClick={() =>
               setInputValue((prev) =>
                 prev ? (parseFloat(prev) * -1).toString() : "-"
@@ -95,7 +114,7 @@ function HandleCalc({ final, inputValue, handleButtonClick, setInputValue }) {
         {numbers.map((num) => (
           <button
             key={num}
-            className="btn-group border-4 col-3 start-50 justify-content-center p-2 m-1 pumpkin"
+            className="btn-group border-4 col-3 start-50 justify-content-center p-2 m-1 text-bg-danger"
             onClick={() => handleButtonClick(num)}
             style={{ zIndex: 100000, fontSize: 'clamp(10px, 1vw, 20px)' }}
           >
@@ -109,7 +128,7 @@ function HandleCalc({ final, inputValue, handleButtonClick, setInputValue }) {
         {mathOperations.map((item) => (
           <button
             key={item}
-            className="btn-group border-4 col-sm-4 col-md-4 col-lg-4 start-50 justify-content-center p-3 m-1 ghost"
+            className="btn-group border-4 col-sm-4 col-md-4 col-lg-4 start-50 justify-content-center p-3 m-1 text-bg-danger"
             onClick={() => handleButtonClick(item)}
             style={{ zIndex: 100000 }}
           >
@@ -125,7 +144,7 @@ function HandleCalc({ final, inputValue, handleButtonClick, setInputValue }) {
         {backSpace.map((item) => (
           <button
             key={item}
-            className="btn-group border-4 col-lg-8 col-sm-8 col-md-8 start-50 justify-content-center p-3 m-2 pumpkin"
+            className="btn-group border-4 col-lg-8 col-sm-8 col-md-8 start-50 justify-content-center p-3 m-2 text-bg-success"
             onClick={() => setInputValue((prev) => prev.slice(0, -1))}
             style={{ zIndex: 100000, fontSize: 'clamp(10px, 1vw, 20px)' }}
           >

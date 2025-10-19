@@ -79,7 +79,11 @@ function Nav({ current, onClick}) {
       <div className="row d-flex flex-wrap overflow-hidden">
       <h1 ref={a.containerRef} className='col-10' style={{fontSize:'clamp(.5rem, 1rem, 2rem)'} }>Days to complete:
 
-        <motion.span ref ={a.itemRef} style={{fontSize:'clamp(1rem, 1.5rem, 2rem)', fontFamily: 'fantasy', display: 'inline-block', whiteSpace: 'nowrap'}}
+        <motion.span 
+        ref ={a.itemRef} 
+        style={{fontSize:'clamp(1rem, 1.5rem, 2rem)', 
+          fontFamily: 'fantasy', display: 'inline-block', 
+          whiteSpace: 'nowrap'}}
           initial={{ x: 0}}
           animate={{ x: [0, a.maxX] }}
           transition={{duration: 3, ease: "easeOut", repeat: Infinity, repeatType: "reverse"}} >
