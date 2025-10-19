@@ -1,8 +1,7 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
-import './LiquidEther.css';
 
-export default function LiquidEther({
+export function LiquidEther({
   mouseForce = 20,
   cursorSize = 100,
   isViscous = false,
@@ -13,7 +12,7 @@ export default function LiquidEther({
   BFECC = true,
   resolution = 0.5,
   isBounce = false,
-  colors = ['#5227FF', '#FF9FFC', '#B19EEF'],
+  colors = ['#241904ff', '#FF9FFC', '#B19EEF'],
   style = {},
   className = '',
   autoDemo = true,

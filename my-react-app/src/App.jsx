@@ -8,8 +8,9 @@ import {Calculator} from './components/Calculator.jsx'
 import {Contact} from './components/Contact.jsx'
 import { useState} from 'react'
 import { ApiProvider} from './Context/ApiProvider.jsx'
+import { LiquidEther } from './backgrounds/LiquidEther.jsx';
 
- const PAGES = ({home: <Home />, about: <About />, calculator: <Calculator />, weather: <Weather />, movies: <Movies />});
+ const PAGES = {home: <Home />, about: <About />, calculator: <Calculator />, weather: <Weather />, movies: <Movies />};
 export default function App() {
   const [page, setPage] = useState('home'); // State to track the current page
   // Render the main content with navigation and current page
@@ -19,11 +20,47 @@ export default function App() {
 function MainContent({ page, setPage, PAGES }) {
   const currentPage = PAGES[page] || <h1>Page Not Found</h1>;
   return (
-    <div className='app-background bg-black over'
-    style={{ minHeight: '100vh'}}>
-      <div className="App container">
-        <Nav current={page} onClick={setPage} className="navigation"/>
-        {currentPage}
+    <div>
+      {page === 'calculator' ? (
+        <div 
+          style={{
+    position: 'fixed',
+    inset: 0,
+    zIndex: 100000,   // max
+    pointerEvents: 'auto', // won't block clicks
+    overflow: 'hidden',
+    background: 'transparent'
+  }}>
+        <LiquidEther
+
+          mouseForce={60}
+          cursorSize={40}
+          isViscous={false}
+          viscous={30}
+          iterationsViscous={32}
+          iterationsPoisson={32}
+          resolution={0.5}
+          isBounce={false}
+          autoDemo={true}
+          autoSpeed={0.5}
+          autoIntensity={2}
+          takeoverDuration={0.25}
+          autoResumeDelay={3000}
+          autoRampDuration={0.6}
+          // We need a style prop to set the size of the liquid background
+          //width and height 100% to fill the parent container
+          //display block to remove any inline gaps
+          style={{ width: '100vw', height: '100%', display: 'block' }}
+        />
+        </div>
+      ) : null}
+
+      <div className='app-background bg-black over' style={{ minHeight: '100vh' }}>
+        <div className='container'>
+          <Nav current={page} onClick={setPage} className="navigation"/>
+
+          {currentPage}
+        </div>
       </div>
     </div>
   );

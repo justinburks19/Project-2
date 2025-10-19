@@ -90,6 +90,7 @@ function Nav({ current, onClick}) {
       {/* Welcome message with animation */}
       {button && (
         <motion.div
+          style={{ zIndex: 100000 }}
           ref={b.containerRef}
           initial={{ x: 0, y: 10 }}
           animate={{ x: [-10, b.maxX], y: 0 }}
@@ -118,7 +119,8 @@ function Nav({ current, onClick}) {
             <div className={`d-flex justify-content-center ${page === 'home' || page === 'about' ? "col-sm-2 col-md-6 col-lg-6" : "col-sm-2 col-md-4 col-lg-4"}`}
             key={page}>
             <motion.li 
-              style={{border: '2px solid black', borderRadius: '10px'}}
+
+              style={{border: '2px solid black', borderRadius: '10px', zIndex: 100000}}
               ref={c.containerRef} key={page} 
               className="p-0 m-2 onHover"
               initial={{ rotate: 0 }}
