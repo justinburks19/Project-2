@@ -1,6 +1,5 @@
 import { useState } from "react";
 import "../styles/Calculator.css";
-import { clamp } from "three/src/math/MathUtils";
 import {motion} from "framer-motion";
 import { useSize } from "../helpers/size.jsx";
 import pumpkin from '../assets/pumpkin-2341.svg';
