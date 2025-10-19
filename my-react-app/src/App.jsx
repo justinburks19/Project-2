@@ -8,9 +8,8 @@ import {Calculator} from './components/Calculator.jsx'
 import {Contact} from './components/Contact.jsx'
 import { useState} from 'react'
 import { ApiProvider} from './Context/ApiProvider.jsx'
-import 'bootstrap-icons/font/bootstrap-icons.css';
 
- const PAGES = ({home: <Home />, about: <About />, calculator: <Calculator />, weather: <Weather />, movies: <Movies />, contact: <Contact />});
+ const PAGES = ({home: <Home />, about: <About />, calculator: <Calculator />, weather: <Weather />, movies: <Movies />});
 export default function App() {
   const [page, setPage] = useState('home'); // State to track the current page
   // Render the main content with navigation and current page
@@ -20,8 +19,8 @@ export default function App() {
 function MainContent({ page, setPage, PAGES }) {
   const currentPage = PAGES[page] || <h1>Page Not Found</h1>;
   return (
-    <div className='app-background bg-black'
-    style={{ minHeight: '100vh', minWidth: '100vw' }}>
+    <div className='app-background bg-black over'
+    style={{ minHeight: '100vh'}}>
       <div className="App container">
         <Nav current={page} onClick={setPage} className="navigation"/>
         {currentPage}

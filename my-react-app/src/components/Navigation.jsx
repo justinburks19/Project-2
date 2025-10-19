@@ -9,7 +9,7 @@ import { Prism } from '../backgrounds/Prism.jsx';
 
 function Nav({ current, onClick}) {
   // Define the pages for navigation
-  const PAGES = ['home', 'about', 'contact', 'calculator', 'movies', 'weather']; 
+  const PAGES = ['home', 'about', 'calculator', 'movies', 'weather']; 
   const [button, showButton] = useState(true);
   //for size hooks
   //each call to useSize returns an object with containerRef, itemRef, and maxX
@@ -96,7 +96,7 @@ function Nav({ current, onClick}) {
           transition={{ duration: 1, repeat: Infinity, repeatType: "reverse" }}
         >
 
-          <h1 className='col-7 d-flex flex-wrap justify-content-center mx-auto text-center'> Welcome to <span style={{textDecoration: 'underline'}}>-Project 2-</span> <span className='text-danger' onClick={() => alert("Hello Professor!")} style={{ cursor: 'pointer' }}>Professor</span>
+          <h1 className='col-7 d-flex flex-wrap justify-content-center mx-auto text-center '> Welcome to <span style={{textDecoration: 'underline'}}>-Project 2-</span> <span className='text-danger' onClick={() => alert("Hello Professor!")} style={{ cursor: 'pointer' }}>Professor</span>
           </h1>
 
           <div ref={b.itemRef} className='d-flex justify-content-center'>
@@ -115,10 +115,12 @@ function Nav({ current, onClick}) {
         <ul className="list-unstyled d-flex flex-wrap justify-content-center">
           {PAGES.map((page) => (
             /* Motion list item for animation */
+            <div className={`d-flex justify-content-center ${page === 'home' || page === 'about' ? "col-sm-2 col-md-6 col-lg-6" : "col-sm-2 col-md-4 col-lg-4"}`}
+            key={page}>
             <motion.li 
               style={{border: '2px solid black', borderRadius: '10px'}}
               ref={c.containerRef} key={page} 
-              className="btn-cell p-0 m-2 onHover"
+              className="p-0 m-2 onHover"
               initial={{ rotate: 0 }}
               animate={{ rotate: [1, 1, -10, 1] }}
               transition={{ duration: 1, repeat: Infinity, repeatType: "loop", delay: page.length * 0.8 }}
@@ -133,7 +135,7 @@ function Nav({ current, onClick}) {
                 aria-current={current === page ? 'page' : undefined}
                 >{page.charAt(0).toUpperCase() + page.slice(1)}</a>
             </motion.li>
-            
+            </div>
           ))}
         </ul>
       </nav>

@@ -1,5 +1,24 @@
 .onHover:hover {
-    animation: grow 0.4s ease-in-out reverse infinite;
+    transform: scale(1.2);
+    filter: brightness(1.2);
+    background-color: black;
+    z-index: 999;
+}
+.onHover::after {
+    z-index: 999;
+}
+.onHover {
+    z-index: 0;
+    overflow: visible;
+    position: relative;
+}
+.objectives {
+    overflow: visible;
+}
+
+.objectives-card::before, .objectives-card::after {
+    z-index: -1;
+
 }
 @keyframes grow {
     0% {
